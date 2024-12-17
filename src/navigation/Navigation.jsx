@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen'; 
@@ -29,22 +29,41 @@ export default function Navigation() {
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
+          tabBarShowLabel: false,
           tabBarActiveTintColor: 'tomato', 
           tabBarInactiveTintColor: 'gray', 
+          animation: 'shift',
         })}
       >
         <Tab.Screen 
           name="Home" 
           component={HomeScreen} 
+          options={{
+            headerTitle: 'Placa',
+            headerTitleStyle: {color: 'tomato'}
+          }}
         />
         <Tab.Screen 
           name="Profile" 
           component={ProfileScreen}
-          options={{ tabBarBadge: showProfileBadge ? profileBadgeCount:null }} 
+          options={{
+            // recordar que quiero que el titulo corresponda al nombre de usuario. Hacerlo dinámico
+            headerTitle: 'Perfil',
+            headerTitleStyle: {color: 'tomato'},
+            tabBarBadge: showProfileBadge ? profileBadgeCount:null,
+            tabBarBadgeStyle: {
+              color: 'white',
+              backgroundColor: 'tomato'
+            } 
+          }} 
         />
         <Tab.Screen 
           name="Settings" 
           component={SettingsScreen} 
+          options={{
+            headerTitle: 'Configuraciones',
+            headerTitleStyle: {color: 'tomato'}
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
